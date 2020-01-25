@@ -1,1 +1,2 @@
 # Add the package names of everything that needs to be installed in order to run
+opencv-python
