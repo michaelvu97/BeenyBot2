@@ -6,7 +6,7 @@ with open("product_dictionary.csv", "r", encoding='utf-8') as csvfile:
     for row in reader:
         if (row[0] == "CrÃ¨me Cookies"):
             continue
-        products_list.append(row[0].lower())
+        products_list.append(row[0])
 
     products_list.remove("product_name")
 
