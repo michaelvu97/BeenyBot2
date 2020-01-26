@@ -27,7 +27,7 @@ def parsePromo(big_text, whole_text):
             matches = re.search("([0-9\.\$]+)", big_text)
             dollarsPerUnit = priceToNum(matches.group(1))
     except:
-        print(sys.exc_info())
+        sys.exc_info()
         return None
 
     try:
@@ -50,7 +50,7 @@ def parsePromo(big_text, whole_text):
             matches = re.search("([0-9\.$]+)", saveText)
             dollarsOffPerUnit = priceToNum(matches.group(1))
     except:
-        print(sys.exc_info())
+        sys.exc_info()
 
     # Infer the required fields
     try:
@@ -61,7 +61,20 @@ def parsePromo(big_text, whole_text):
         if dollarsPerUnit is None and discount is not None and dollarsOffPerUnit is not None:
             dollarsPerUnit = (dollarsOffPerUnit / discount) - dollarsOffPerUnit
     except:
-        print(sys.exc_info())
+        sys.exc_info()
+
+    # Correction
+    if discount is not None:
+        if discount > 1:
+            discount = None
+        elif discount < 0:
+            discount = None
+
+    if dollarsOffPerUnit is not None and dollarsOffPerUnit < 0:
+        dollarsOffPerUnit = None
+
+    if dollarsPerUnit is not None and dollarsPerUnit < 0:
+        dollarsPerUnit = None
 
     return (minNumber, discount, dollarsPerUnit, dollarsOffPerUnit)
 
