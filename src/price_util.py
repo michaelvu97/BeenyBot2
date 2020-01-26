@@ -22,7 +22,7 @@ def priceToNum(s):
     return float(clean(s))
 
 def clean(s):
-    return s.strip(' ¢$').replace('.', '')
+    return s.strip(' ¢$').replace('.', '').replace(' ', '').replace(',', '')
 
 
 if __name__ == "__main__":
@@ -35,7 +35,9 @@ if __name__ == "__main__":
         "$499",
         "99¢",
         "99",
-        "4.50"
+        "4.50",
+        "$12,44",
+        "9 99"
     ]
 
     for test in tests:

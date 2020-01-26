@@ -8,6 +8,7 @@ class AdBlockData():
         self.save_per_unit = None # Number
         self.discount = None # Number
         self.organic = False
+        self.confidence = 0
 
 
     def createFromCsvRow(row):
