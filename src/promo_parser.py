@@ -46,6 +46,9 @@ def parsePromo(big_text, whole_text):
         elif "I" in saveText:
             priceStr = saveText[:saveText.find("I")]
             dollarsOffPerUnit = priceToNum(priceStr)
+        else:
+            matches = re.search("([0-9\.$]+)", saveText)
+            dollarsOffPerUnit = priceToNum(matches.group(1))
     except:
         print(sys.exc_info())
 
@@ -82,6 +85,7 @@ if __name__ == "__main__":
     print(parsePromo("BUY ONE GET ONE FREE", "SAVE 14 on 2\n"))
     print(parsePromo("HALF OFF HUGE LAWBSTA", "SAVE 12 on 2\n"))
     print(parsePromo("25% OFF", "SAVE $12/lb\n"))
+    print(parsePromo(" 10% OFF", "SAVE $10\n"))
     print(parsePromo(" 10% OFF", "SAVE 10\n"))
     print(parsePromo("SAVE 150", ""))
     print(parsePromo("199 OFF", ""))
